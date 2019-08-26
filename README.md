@@ -1,9 +1,15 @@
 # EDTV - Program Survey Project - Backend
 
-### Deployed URLs:
+### Deployed URLs and Repo Links:
 
 ##### Frontend:
 https://swsprague.github.io/edtv-survey-react-frontend
+
+##### Frontend Repo:
+https://github.com/swsprague/edtv-survey-react-frontend
+
+##### Backend Repo:
+https://github.com/swsprague/edtv-survey-express-backend
 
 ##### Backend:
 https://edtv-survey-express-backend.herokuapp.com
