@@ -1,5 +1,13 @@
 # EDTV - Program Survey Project - Backend
 
+### Deployed URLs:
+
+##### Frontend:
+https://swsprague.github.io/edtv-survey-react-frontend
+
+##### Backend:
+https://edtv-survey-express-backend.herokuapp.com
+
 ### Project Synopsis:
 I want to create a survey system that allows for users to submit responses to questions regarding programming choices and preferences as part the Plymouth Public Schools Educational Television Program. This project will be the first step in my approach to adding more functionality and dynamics to the EDTV website, as part of my new role with EDTV that I will be starting following the completion of this program!
 
