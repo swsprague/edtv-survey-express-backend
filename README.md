@@ -21,24 +21,24 @@ I want to create a survey system that allows for users to submit responses to qu
 
 ##### Authentication:
 
-As a user, I want to be able to sign up for an account.
-As a user, I want to be able to sign into my account.
-As a user, I want to be able to change the password for my account.
-As a user, I want to be able to sign out of my account.
+- As a user, I want to be able to sign up for an account.
+- As a user, I want to be able to sign into my account.
+- As a user, I want to be able to change the password for my account.
+- As a user, I want to be able to sign out of my account.
 
 ##### Survey Functionality:
 
-As a user, I want to be able to start a survey.
-As a user, I want to be able to select an answer to a question on a survey.
-As a user, I want to be able to change my answer to a survey.
-As a user, I want to be able to delete my responses to a survey.
-As a user, I want to be able to submit a survey response for review.
+- As a user, I want to be able to start a survey.
+- As a user, I want to be able to select an answer to a question on a survey.
+- As a user, I want to be able to change my answer to a survey.
+- As a user, I want to be able to delete my responses to a survey.
+- As a user, I want to be able to submit a survey response for review.
 
 ##### Stretch Goal Stories
 
-As a user, I want to be able to add my own custom answers to a survey question.
-As a user, I want to be able to pause a survey and save my responses.
-As a user, I want to be able to return to and resume a saved survey.
+- As a user, I want to be able to add my own custom answers to a survey question.
+- As a user, I want to be able to pause a survey and save my responses.
+- As a user, I want to be able to return to and resume a saved survey.
 
 ### Wireframe
 ![Wireframe Pg. 1][Wireframe Pt. 1]
