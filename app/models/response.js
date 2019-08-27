@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 
 const responseSchema = new mongoose.Schema({
-  response: {
+  answer: {
     type: String,
     required: true,
     unique: true
