@@ -7,16 +7,27 @@ const requireOwnership = customErrors.requireOwnership
 const removeBlanks = require('../../lib/remove_blank_fields')
 const requireToken = passport.authenticate('bearer', { session: false })
 const router = express.Router()
+const Survey = require('../models/survey')
 
 // CREATE
 router.post('/questions', requireToken, (req, res, next) => {
   // set owner of new question to be current user
   console.log('req is ', req.body.question)
+  let surveyId = req.body.question.survey
+  let question = req.body.question
   req.body.question.owner = req.user.id
 
   Question.create(req.body.question)
     .then(question => {
-      res.status(201).json({ question: question.toObject() })
+      Survey.findById(surveyId)
+        .then(foundSurvey => {
+          foundSurvey.questions.push(question._id)
+          let survey = foundSurvey
+          return foundSurvey.update(survey)
+        })
+    })
+    .then(() => {
+      res.status(201).json({ question })
     })
     .catch(next)
 })
@@ -24,7 +35,7 @@ router.post('/questions', requireToken, (req, res, next) => {
 // INDEX
 router.get('/questions', (req, res, next) => {
   Question.find()
-    .populate('responses')
+    .populate('survey')
     .then(questions => {
       // `questions` will be an array of Mongoose documents
       // we want to convert each one to a POJO, so we use `.map` to
@@ -42,6 +53,7 @@ router.get('/questions', (req, res, next) => {
 router.get('/questions/:id', (req, res, next) => {
   // req.params.id will be set based on the `:id` in the route
   Question.findById(req.params.id)
+    .populate('survey')
     .then(handle404)
     // if `findById` is succesful, respond with 200 and "question" JSON
     .then(question => res.status(200).json({ question: question.toObject() }))

@@ -13,6 +13,11 @@ const questionSchema = new mongoose.Schema({
   answers: {
     type: Array,
     required: false
+  },
+  survey: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Survey',
+    required: true
   }
 }, {
   timestamps: true

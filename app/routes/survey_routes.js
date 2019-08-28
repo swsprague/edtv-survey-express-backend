@@ -41,6 +41,7 @@ router.get('/surveys', (req, res, next) => {
 router.get('/surveys/:id', (req, res, next) => {
   // req.params.id will be set based on the `:id` in the route
   Survey.findById(req.params.id)
+    .populate('questions')
     .then(handle404)
     // if `findById` is succesful, respond with 200 and "survey" JSON
     .then(survey => res.status(200).json({ survey: survey.toObject() }))
@@ -53,7 +54,8 @@ router.get('/surveys/:id', (req, res, next) => {
 router.patch('/surveys/:id', requireToken, removeBlanks, (req, res, next) => {
   // if the client attempts to change the `owner` property by including a new
   // owner, prevent that by deleting that key/value pair
-  delete req.body.survey.owner
+  // delete req.body.survey.owner
+  console.log(req.body)
 
   Survey.findById(req.params.id)
     .then(handle404)
