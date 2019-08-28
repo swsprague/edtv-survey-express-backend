@@ -11,6 +11,7 @@ const router = express.Router()
 // CREATE
 router.post('/questions', requireToken, (req, res, next) => {
   // set owner of new question to be current user
+  console.log('req is ', req.body.question)
   req.body.question.owner = req.user.id
 
   Question.create(req.body.question)

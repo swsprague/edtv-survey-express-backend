@@ -3,19 +3,17 @@ const mongoose = require('mongoose')
 const questionSchema = new mongoose.Schema({
   subject: {
     type: String,
-    required: true,
-    unique: true
+    required: true
   },
   owner: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
     required: true
   },
-  responses: [{
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'Response',
-    required: true
-  }]
+  answers: {
+    type: Array,
+    required: false
+  }
 }, {
   timestamps: true
 })

@@ -1,19 +1,18 @@
 const mongoose = require('mongoose')
 
 const responseSchema = new mongoose.Schema({
-  answer: {
-    type: String,
-    required: true,
-    unique: true
+  responses: {
+    type: Array,
+    required: true
   },
   owner: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
     required: true
   },
-  question: {
+  survey: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Question',
+    ref: 'Survey',
     required: true
   }
 }, {
