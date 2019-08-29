@@ -1,8 +1,8 @@
 const mongoose = require('mongoose')
 
-const responseSchema = new mongoose.Schema({
-  responses: {
-    type: Array,
+const userResponseSchema = new mongoose.Schema({
+  answer: {
+    type: String,
     required: true
   },
   owner: {
@@ -10,13 +10,12 @@ const responseSchema = new mongoose.Schema({
     ref: 'User',
     required: true
   },
-  survey: {
+  question: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'Survey',
-    required: true
+    ref: 'Question'
   }
 }, {
   timestamps: true
 })
 
-module.exports = mongoose.model('Response', responseSchema)
+module.exports = mongoose.model('UserResponse', userResponseSchema)

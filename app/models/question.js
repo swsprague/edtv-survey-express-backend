@@ -14,6 +14,10 @@ const questionSchema = new mongoose.Schema({
     type: Array,
     required: false
   },
+  userResponse: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'UserResponse'
+  },
   survey: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Survey',

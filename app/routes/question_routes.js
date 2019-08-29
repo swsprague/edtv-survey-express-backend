@@ -36,6 +36,7 @@ router.post('/questions', requireToken, (req, res, next) => {
 router.get('/questions', (req, res, next) => {
   Question.find()
     .populate('survey')
+    .populate('userResponse')
     .then(questions => {
       // `questions` will be an array of Mongoose documents
       // we want to convert each one to a POJO, so we use `.map` to
@@ -54,6 +55,7 @@ router.get('/questions/:id', (req, res, next) => {
   // req.params.id will be set based on the `:id` in the route
   Question.findById(req.params.id)
     .populate('survey')
+    .populate('userResponse')
     .then(handle404)
     // if `findById` is succesful, respond with 200 and "question" JSON
     .then(question => res.status(200).json({ question: question.toObject() }))

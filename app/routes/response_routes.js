@@ -1,6 +1,6 @@
 const express = require('express')
 const passport = require('passport')
-const Response = require('../models/response')
+const UserResponse = require('../models/response')
 const customErrors = require('../../lib/custom_errors')
 const handle404 = customErrors.handle404
 const requireOwnership = customErrors.requireOwnership
@@ -11,9 +11,9 @@ const router = express.Router()
 // CREATE
 router.post('/responses', requireToken, (req, res, next) => {
   // set owner of new response to be current user
-  req.body.response.owner = req.user.id
-
-  Response.create(req.body.response)
+  req.body.owner = req.user.id
+  console.log(req.body)
+  UserResponse.create(req.body)
     .then(response => {
       res.status(201).json({ response: response.toObject() })
     })
@@ -22,8 +22,8 @@ router.post('/responses', requireToken, (req, res, next) => {
 
 // INDEX
 router.get('/responses', (req, res, next) => {
-  Response.find()
-    .populate('surveys')
+  UserResponse.find()
+    .populate('question')
     .then(responses => {
       // `responses` will be an array of Mongoose documents
       // we want to convert each one to a POJO, so we use `.map` to
@@ -40,7 +40,8 @@ router.get('/responses', (req, res, next) => {
 // GET /examples/5a7db6c74d55bc51bdf39793
 router.get('/responses/:id', (req, res, next) => {
   // req.params.id will be set based on the `:id` in the route
-  Response.findById(req.params.id)
+  UserResponse.findById(req.params.id)
+    .populate('question')
     .then(handle404)
     // if `findById` is succesful, respond with 200 and "response" JSON
     .then(response => res.status(200).json({ response: response.toObject() }))
@@ -55,7 +56,7 @@ router.patch('/responses/:id', requireToken, removeBlanks, (req, res, next) => {
   // owner, prevent that by deleting that key/value pair
   delete req.body.response.owner
 
-  Response.findById(req.params.id)
+  UserResponse.findById(req.params.id)
     .then(handle404)
     .then(response => {
       // pass the `req` object and the Mongoose record to `requireOwnership`
@@ -74,7 +75,7 @@ router.patch('/responses/:id', requireToken, removeBlanks, (req, res, next) => {
 // DESTROY
 // DELETE /examples/5a7db6c74d55bc51bdf39793
 router.delete('/responses/:id', requireToken, (req, res, next) => {
-  Response.findById(req.params.id)
+  UserResponse.findById(req.params.id)
     .then(handle404)
     .then(response => {
       // throw an error if current user doesn't own `response`
