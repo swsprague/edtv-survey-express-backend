@@ -55,7 +55,7 @@ router.patch('/surveys/:id', requireToken, removeBlanks, (req, res, next) => {
   // if the client attempts to change the `owner` property by including a new
   // owner, prevent that by deleting that key/value pair
   // delete req.body.survey.owner
-  console.log(req.body)
+  // console.log(req.body)
 
   Survey.findById(req.params.id)
     .then(handle404)

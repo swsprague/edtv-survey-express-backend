@@ -12,7 +12,7 @@ const router = express.Router()
 router.post('/responses', requireToken, (req, res, next) => {
   // set owner of new response to be current user
   req.body.owner = req.user.id
-  console.log(req.body)
+  // console.log(req.body)
   UserResponse.create(req.body)
     .then(response => {
       res.status(201).json({ response: response.toObject() })
